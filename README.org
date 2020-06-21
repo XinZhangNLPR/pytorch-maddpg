@@ -1,5 +1,5 @@
-#+TITLE: An implementation of MADDPG
-#+AUTHOR: xuehy
+#+TITLE: An implementation of MADDPG for 
+#+AUTHOR: xuehy 
 #+EMAIL: hyxue@outlook.com
 #+STARTUP: content
 
