@@ -9,25 +9,25 @@ import numpy as np
 from params import scale_reward
 
 
-def soft_update(target, source, t):
+def soft_update(target, source, t): #soft update the parameters of target network with tau
     for target_param, source_param in zip(target.parameters(),
                                           source.parameters()):
         target_param.data.copy_(
             (1 - t) * target_param.data + t * source_param.data)
 
 
-def hard_update(target, source):
+def hard_update(target, source): #hard update the parameters of target network without tau
     for target_param, source_param in zip(target.parameters(),
                                           source.parameters()):
         target_param.data.copy_(source_param.data)
 
 
-class MADDPG:
+class MADDPG: 
     def __init__(self, n_agents, dim_obs, dim_act, batch_size,
-                 capacity, episodes_before_train):
-        self.actors = [Actor(dim_obs, dim_act) for i in range(n_agents)]
+                 capacity, episodes_before_train): #(no. agents, dimession of the observation, dimession of the action, batch size, size of the memory,no. of episodes)
+        self.actors = [Actor(dim_obs, dim_act) for i in range(n_agents)] # give each agent a Actor net (policy network)
         self.critics = [Critic(n_agents, dim_obs,
-                               dim_act) for i in range(n_agents)]
+                               dim_act) for i in range(n_agents)]  # give each agent a critic net (Q-value network)
         self.actors_target = deepcopy(self.actors)
         self.critics_target = deepcopy(self.critics)
 
